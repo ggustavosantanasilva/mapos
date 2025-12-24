@@ -56,12 +56,8 @@
  */
 
 $composerAutoloadFile = __DIR__ . DIRECTORY_SEPARATOR . 'application' . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
-$composerAutoloadFileRoot = __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
-
 if (file_exists($composerAutoloadFile)) {
     require_once $composerAutoloadFile;
-} elseif (file_exists($composerAutoloadFileRoot)) {
-    require_once $composerAutoloadFileRoot;
 } else {
     throw new \Exception('Arquivo autoload não encontrado, necessário executar composer install!');
 }

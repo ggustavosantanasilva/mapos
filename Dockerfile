@@ -26,8 +26,5 @@ RUN composer install --no-dev --optimize-autoloader
 
 RUN chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html
 
-COPY docker-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 EXPOSE 80
-ENTRYPOINT ["docker-entrypoint.sh"]

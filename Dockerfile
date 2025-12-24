@@ -22,8 +22,7 @@ WORKDIR /var/www/html
 
 COPY . .
 
-RUN composer install --no-dev --optimize-autoloader && \
-    if [ -d "vendor" ] && [ ! -d "application/vendor" ]; then mv vendor application/; fi
+RUN composer install --no-dev --optimize-autoloader
 
 RUN chown -R www-data:www-data /var/www/html && chmod -R 755 /var/www/html
 

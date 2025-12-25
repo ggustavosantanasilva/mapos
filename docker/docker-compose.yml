@@ -25,6 +25,7 @@ services:
     build:
       context: ./etc/php
       dockerfile: Dockerfile
+    command: sh -c "chown -R www-data:www-data /var/www/html/application /var/www/html/updates && php-fpm"
     restart: always
     volumes:
       - "./etc/php/php.ini:/usr/local/etc/php/conf.d/php.ini"

@@ -17,6 +17,8 @@ services:
     depends_on:
       - php-fpm
       - mysql
+    networks:
+      - mapos_network
 
   php-fpm:
     container_name: php-fpm
@@ -28,6 +30,8 @@ services:
       - "./etc/php/php.ini:/usr/local/etc/php/conf.d/php.ini"
       - "./etc/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini"
       - "../:/var/www/html"
+    networks:
+      - mapos_network
 
   composer:
     container_name: composer
@@ -37,6 +41,8 @@ services:
     volumes:
       - "../:/app"
     command: install --ignore-platform-reqs --no-scripts
+    networks:
+      - mapos_network
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
@@ -51,6 +57,8 @@ services:
     restart: always
     depends_on:
       - mysql
+    networks:
+      - mapos_network
 
   mysql:
     image: mysql:${MYSQL_MAPOS_VERSION}
@@ -67,3 +75,9 @@ services:
       - "${MYSQL_MAPOS_PORT}:3306"
     volumes:
       - "./data/db/mysql:/var/lib/mysql"
+    networks:
+      - mapos_network
+
+networks:
+  mapos_network:
+    driver: bridge
